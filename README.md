@@ -1,1 +1,1 @@
-# Start template Vite + React + Typescript
+# Start template Vite + React + Typescript + ESLint
