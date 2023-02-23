@@ -1,15 +1,27 @@
 {
   "name": "react-starter",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "eslint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
+    "dev": "vite",
+    "eslint": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --ignore-path ./.gitignore",
+    "eslint:fix": "yarn eslint --fix",
     "format:check": "prettier --config ./.prettierrc --check --debug-check ./src",
-    "format:fix": "prettier --config ./.prettierrc --write ./src"
+    "format:fix": "prettier --config ./.prettierrc --write ./src",
+    "prepare": "husky install",
+    "preview": "vite preview"
+  },
+  "lint-staged": {
+    "*.{css,md,json}": [
+      "yarn format:check"
+    ],
+    "*.{js?(x),ts?(x)}": [
+      "yarn eslint",
+      "yarn format:check"
+    ],
+    "package.json": "npx sort-package-json"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -25,6 +37,8 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "prettier": "^2.8.4",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
